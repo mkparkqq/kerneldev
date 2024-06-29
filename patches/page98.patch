@@ -1,0 +1,24 @@
+diff --git a/kernel/fork.c b/kernel/fork.c
+index 1a2d18e98..a34a70a36 100644
+--- a/kernel/fork.c
++++ b/kernel/fork.c
+@@ -2173,6 +2173,7 @@ struct task_struct *fork_idle(int cpu)
+  * It copies the process, and if successful kick-starts
+  * it and waits for it to finish using the VM if required.
+  */
++static int debug_kernel_thread = 1;
+ long _do_fork(unsigned long clone_flags,
+ 	      unsigned long stack_start,
+ 	      unsigned long stack_size,
+@@ -2208,6 +2209,11 @@ long _do_fork(unsigned long clone_flags,
+ 			 child_tidptr, NULL, trace, tls, NUMA_NO_NODE);
+ 	add_latent_entropy();
+ 
++	if (debug_kernel_thread) {
++		printk("[+][%s] process \n", current->comm);
++		dump_stack();
++	}
++
+ 	if (IS_ERR(p))
+ 		return PTR_ERR(p);
+ 

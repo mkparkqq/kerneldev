@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# custom
+4.19.127-v8+/
+cscope.files
+cscope.out
+tags
+linux/
+rpi_build_log.txt
+preproc_build_log.txt
+rpi-kernel.tar.gz
+kernel-headers/
+out/
